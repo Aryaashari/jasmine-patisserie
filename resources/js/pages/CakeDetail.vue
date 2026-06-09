@@ -18,7 +18,7 @@ const whatsappLink = computed(() => {
         return '#';
     }
 
-    const phoneNumber = '628123456789'; // Dummy premium WA number
+    const phoneNumber = '6281511196225'; // WhatsApp number
     const text = encodeURIComponent(
         `Halo Jasmine Patisserie, saya ingin memesan kue berikut:\n\n*Nama Kue:* ${cake.value.name}\n*Harga:* ${cake.value.priceFormatted}\n*Ukuran/Porsi:* ${cake.value.servings}\n\nApakah kue ini tersedia untuk dipesan? Terima kasih!`
     );

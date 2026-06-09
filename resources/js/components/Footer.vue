@@ -9,8 +9,8 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-    { label: 'Instagram', href: '#' },
-    { label: 'Kontak WhatsApp', href: '#' },
+    { label: 'Instagram', href: 'https://www.instagram.com/jasminepatisserie_/' },
+    { label: 'Kontak WhatsApp', href: 'https://wa.me/6281511196225' },
     { label: 'Kebijakan Privasi', href: '#' },
 ];
 </script>
@@ -62,9 +62,9 @@ const socialLinks = [
                 <div>
                     <h4 class="label-uppercase text-primary-container mb-4">Kunjungi Kami</h4>
                     <div class="text-inverse-on-surface/70 font-body space-y-2.5 text-sm">
-                        <p>📍 Jl. Melati No. 27,<br>Jakarta Selatan 12345</p>
-                        <p>📧 hello@jasminepatisserie.id</p>
-                        <p>📞 +62 812-3456-7890</p>
+                        <p>Jl. Boulevard Raya, Cibeber,<br>Kec. Cibeber, Kota Cilegon, Banten 42426</p>
+                        <p>jasminepatisserie15@gmail.com</p>
+                        <p>+62 815-1119-6225</p>
                     </div>
                 </div>
             </div>

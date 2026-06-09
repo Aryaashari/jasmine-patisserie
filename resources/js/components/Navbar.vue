@@ -39,12 +39,13 @@ function toggleMenu() {
             </nav>
 
             <!-- Desktop CTA -->
-            <Link
-                href="/#order"
+            <a
+                href="https://wa.me/6281511196225"
+                target="_blank"
                 class="gradient-button text-on-primary hidden rounded-lg border border-[#d4af37] px-5 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg md:inline-flex"
             >
                 Pesan Sekarang
-            </Link>
+            </a>
 
             <!-- Mobile Hamburger -->
             <button
@@ -90,13 +91,14 @@ function toggleMenu() {
                     >
                         {{ link.label }}
                     </Link>
-                    <Link
-                        href="/#order"
+                    <a
+                        href="https://wa.me/6281511196225"
+                        target="_blank"
                         class="gradient-button mt-2 inline-block rounded-lg border border-[#d4af37] px-5 py-3 text-center text-sm font-semibold text-white transition-all duration-300"
                         @click="isMenuOpen = false"
                     >
                         Pesan Sekarang
-                    </Link>
+                    </a>
                 </nav>
             </div>
         </Transition>

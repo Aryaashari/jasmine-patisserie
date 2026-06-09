@@ -75,11 +75,13 @@ const packMap: Record<string, string> = {
                 📥 Ekspor Model 3D (GLB)
             </button>
             
-            <button 
-                class="bg-[#25D366] hover:bg-[#128C7E] w-full cursor-pointer rounded-lg px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md mt-4"
+            <a 
+                href="https://wa.me/6281511196225"
+                target="_blank"
+                class="bg-[#25D366] hover:bg-[#128C7E] w-full cursor-pointer rounded-lg px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md mt-4 block text-center"
             >
                 🛒 Pesan Kue Kustom Ini
-            </button>
+            </a>
         </div>
     </div>
 </template>

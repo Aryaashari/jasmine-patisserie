@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -17,18 +18,18 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                <a
-                    href="#start-design"
+                <Link
+                    href="/custom-designer"
                     class="gradient-button inline-flex w-full items-center justify-center rounded-lg border border-[#d4af37] px-8 py-4 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg sm:w-auto"
                 >
                     Mulai Desain<br class="sm:hidden"> Anda
-                </a>
-                <a
-                    href="#past-works"
+                </Link>
+                <Link
+                    href="/gallery"
                     class="glass inline-flex w-full items-center justify-center rounded-lg border-[#ac2471]/30 px-8 py-4 text-sm font-semibold text-[#ac2471] transition-all duration-300 hover:scale-105 hover:bg-white/90 sm:w-auto"
                 >
                     Lihat Karya<br class="sm:hidden"> Kami
-                </a>
+                </Link>
             </div>
         </div>
     </section>

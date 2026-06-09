@@ -46,7 +46,8 @@
                         Jelajahi Koleksi Kue
                     </a>
                     <a
-                        href="#order"
+                        href="https://wa.me/6281511196225"
+                        target="_blank"
                         class="glass inline-flex items-center justify-center gap-2 rounded-full border border-[#ac2471]/50 bg-white/50 px-8 py-3.5 text-base font-semibold text-[#ac2471] transition-all duration-300 hover:scale-105 hover:bg-white/90"
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="shrink-0">
