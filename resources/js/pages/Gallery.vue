@@ -14,9 +14,6 @@ const selectedCategory = ref('All');
 const minPrice = ref(0);
 const maxPrice = ref(5000000);
 const maxRangeLimit = 5000000;
-// Price slider percentages for the active track styling
-const minPercent = computed(() => (minPrice.value / maxRangeLimit) * 100);
-const maxPercent = computed(() => (maxPrice.value / maxRangeLimit) * 100);
 
 // Watchers to ensure minPrice doesn't exceed maxPrice
 watch(minPrice, (val) => {
@@ -103,206 +100,157 @@ const showMobileFilters = ref(false);
             </div>
         </header>
 
-        <!-- Sticky Filter Bar -->
-        <div class="glass-dark sticky top-[60px] z-40 border-b border-primary-container/20 py-4 transition-all duration-300">
-            <div class="mx-auto max-w-7xl px-4 md:px-16">
-                <!-- Mobile Filter Header / Toggle -->
-                <div class="flex items-center justify-between md:hidden">
+        <!-- Two-column Layout -->
+        <div class="mx-auto max-w-7xl px-4 md:px-16 py-12 md:py-16 flex flex-col lg:flex-row gap-8 items-start">
+            
+            <!-- Mobile Filter Toggle (shows on small screens only) -->
+            <button
+                @click="showMobileFilters = !showMobileFilters"
+                class="lg:hidden flex items-center justify-center gap-2 w-full rounded-xl border border-[#ac2471]/30 px-4 py-3 text-sm font-semibold text-[#ac2471] bg-white/50 mb-2"
+            >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h7"/>
+                </svg>
+                {{ showMobileFilters ? 'Sembunyikan Filter' : 'Tampilkan Filter' }}
+            </button>
+
+            <!-- Sidebar Filter -->
+            <aside 
+                :class="[
+                    'w-full lg:w-1/4 shrink-0 glass-dark rounded-2xl p-6 border border-primary-container/20 lg:sticky lg:top-[100px] transition-all duration-300',
+                    showMobileFilters ? 'block' : 'hidden lg:block'
+                ]"
+            >
+                <h2 class="text-xl font-display font-bold text-[#ac2471] mb-6 hidden lg:block">Filter Pencarian</h2>
+                
+                <!-- Category Filter -->
+                <div class="mb-8">
+                    <h3 class="label-uppercase text-on-surface-variant mb-4 block">Kategori</h3>
+                    <div class="flex flex-col gap-2">
+                        <button
+                            v-for="cat in categories"
+                            :key="cat.value"
+                            @click="selectedCategory = cat.value"
+                            :class="[
+                                'text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer border',
+                                selectedCategory === cat.value
+                                    ? 'bg-gradient-to-r from-[#ac2471] to-[#8b008b] text-white border-transparent shadow-md'
+                                    : 'bg-white/50 text-on-surface-variant border-outline-variant hover:border-[#ac2471]/50 hover:bg-white'
+                            ]"
+                        >
+                            {{ cat.label }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Price Range Inputs -->
+                <div class="mb-8">
+                    <h3 class="label-uppercase text-on-surface-variant mb-4 block">Range Harga</h3>
+                    
+                    <div class="flex flex-col gap-3">
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant font-medium">Rp</span>
+                            <input
+                                type="number"
+                                v-model.number="minPrice"
+                                min="0"
+                                placeholder="Harga Minimum"
+                                class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-outline-variant bg-white/50 text-sm focus:ring-2 focus:ring-[#ac2471]/20 focus:border-[#ac2471] outline-none transition-all"
+                            />
+                        </div>
+                        <div class="text-center text-on-surface-variant text-xs font-bold uppercase tracking-wider">Sampai</div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant font-medium">Rp</span>
+                            <input
+                                type="number"
+                                v-model.number="maxPrice"
+                                min="0"
+                                placeholder="Harga Maksimum"
+                                class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-outline-variant bg-white/50 text-sm focus:ring-2 focus:ring-[#ac2471]/20 focus:border-[#ac2471] outline-none transition-all"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Button & Count -->
+                <div class="pt-6 border-t border-outline-variant/30 flex flex-col gap-4">
+                    <div class="flex justify-between items-center text-sm font-medium">
+                        <span class="text-on-surface-variant">Menampilkan:</span>
+                        <span class="text-[#ac2471] font-bold">{{ filteredCakes.length }} Kue</span>
+                    </div>
                     <button
-                        @click="showMobileFilters = !showMobileFilters"
-                        class="flex items-center gap-2 rounded-lg border border-[#ac2471]/30 px-4 py-2 text-sm font-semibold text-[#ac2471] bg-white/50"
+                        v-if="hasActiveFilters"
+                        @click="resetFilters"
+                        class="w-full py-2.5 rounded-xl border-2 border-[#ac2471]/20 text-[#ac2471] text-sm font-semibold hover:bg-[#ac2471] hover:text-white hover:border-[#ac2471] transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 6h16M4 12h16M4 18h7"/>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M18 6L6 18M6 6l12 12"/>
                         </svg>
-                        {{ showMobileFilters ? 'Sembunyikan Filter' : 'Tampilkan Filter' }}
+                        Reset Filter
                     </button>
-
-                    <span class="text-on-surface-variant text-sm font-medium">
-                        {{ filteredCakes.length }} Kue ditemukan
-                    </span>
                 </div>
+            </aside>
 
-                <!-- Filters Content (always visible on desktop, toggleable on mobile) -->
+            <!-- Gallery Grid Content -->
+            <main class="w-full lg:w-3/4 flex-1">
+                <!-- Stagger entry container -->
+                <TransitionGroup
+                    tag="div"
+                    name="stagger-grid"
+                    class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3"
+                    v-if="filteredCakes.length > 0"
+                >
+                    <GalleryCakeCard
+                        v-for="cake in filteredCakes"
+                        :key="cake.id"
+                        :cake="cake"
+                        class="stagger-item"
+                    />
+                </TransitionGroup>
+
+                <!-- Empty State -->
                 <div
-                    :class="[
-                        'mt-4 md:mt-0 flex-col gap-6 md:flex md:flex-row md:items-center md:justify-between',
-                        showMobileFilters ? 'flex' : 'hidden'
-                    ]"
+                    v-else
+                    class="flex flex-col items-center justify-center text-center py-20 px-4 bg-white/40 rounded-[24px] border border-outline-variant/30"
                 >
-                    <!-- Left: Category Chips -->
-                    <div class="flex-1">
-                        <span class="label-uppercase text-on-surface-variant mb-2 block md:hidden">Kategori</span>
-                        <div class="hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 md:mx-0 md:flex-wrap md:px-0 md:pb-0">
-                            <button
-                                v-for="cat in categories"
-                                :key="cat.value"
-                                @click="selectedCategory = cat.value"
-                                :class="[
-                                    'rounded-full px-5 py-2 text-sm font-medium border whitespace-nowrap transition-all duration-200 cursor-pointer',
-                                    selectedCategory === cat.value
-                                        ? 'bg-gradient-to-r from-[#ac2471] to-[#8b008b] text-white border-transparent shadow-sm'
-                                        : 'border-outline-variant text-on-surface-variant bg-transparent hover:border-primary-container hover:text-primary'
-                                ]"
-                            >
-                                {{ cat.label }}
-                            </button>
-                        </div>
+                    <div class="bg-surface-container rounded-full p-6 mb-6">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ac2471" stroke-width="1.5">
+                            <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm1-13h-2v6h2zm0 8h-2v2h2z"/>
+                        </svg>
                     </div>
-
-                    <!-- Right: Price Range & Action Buttons -->
-                    <div class="flex flex-col gap-4 sm:flex-row sm:items-center md:gap-8 min-w-[280px]">
-                        <!-- Price Slider -->
-                        <div class="flex-1">
-                            <div class="mb-2 flex items-center justify-between gap-4">
-                                <span class="label-uppercase text-on-surface-variant">Range Harga</span>
-                                <span class="text-xs font-bold text-[#ac2471]">
-                                    {{ formatRupiah(minPrice) }} - {{ formatRupiah(maxPrice) }}
-                                </span>
-                            </div>
-
-                            <div class="dual-slider relative h-6 w-full flex items-center">
-                                <!-- Base line -->
-                                <div class="relative w-full h-1.5 bg-[#ebe0df] rounded-full">
-                                    <!-- Filled range indicator -->
-                                    <div
-                                        class="absolute h-full rounded-full bg-gradient-to-r from-[#ac2471] to-[#d4af37]"
-                                        :style="{ left: minPercent + '%', right: (100 - maxPercent) + '%' }"
-                                    ></div>
-                                    <!-- Multi-range inputs -->
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        :max="maxRangeLimit"
-                                        step="50000"
-                                        v-model.number="minPrice"
-                                        class="absolute pointer-events-none appearance-none bg-transparent w-full h-1.5 top-0 left-0 outline-none cursor-pointer"
-                                    />
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        :max="maxRangeLimit"
-                                        step="50000"
-                                        v-model.number="maxPrice"
-                                        class="absolute pointer-events-none appearance-none bg-transparent w-full h-1.5 top-0 left-0 outline-none cursor-pointer"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Reset Button -->
-                        <div class="flex items-center gap-4 justify-between sm:justify-start">
-                            <button
-                                v-if="hasActiveFilters"
-                                @click="resetFilters"
-                                class="flex items-center gap-1.5 text-sm font-semibold text-[#ac2471] hover:underline cursor-pointer"
-                            >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <path d="M18 6L6 18M6 6l12 12"/>
-                                </svg>
-                                Atur Ulang
-                            </button>
-
-                            <span class="hidden md:inline text-on-surface-variant text-sm font-semibold whitespace-nowrap">
-                                {{ filteredCakes.length }} Kue ditemukan
-                            </span>
-                        </div>
-                    </div>
+                    <h3 class="font-display text-xl font-bold text-on-surface mb-2">Kue Tidak Ditemukan</h3>
+                    <p class="text-on-surface-variant font-body max-w-[448px] text-sm leading-relaxed mb-6">
+                        Tidak ada koleksi kue yang sesuai dengan filter kategori atau rentang harga yang dipilih. Cobalah untuk mereset filter atau menyesuaikan rentang pencarian Anda.
+                    </p>
+                    <button
+                        @click="resetFilters"
+                        class="gradient-button text-on-primary rounded-full px-6 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300 hover:scale-105"
+                    >
+                        Lihat Semua Koleksi
+                    </button>
                 </div>
-            </div>
+            </main>
         </div>
-
-        <!-- Gallery Grid -->
-        <main class="mx-auto max-w-7xl px-4 md:px-16 py-12 md:py-16">
-            <!-- Stagger entry container -->
-            <TransitionGroup
-                tag="div"
-                name="stagger-grid"
-                class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                v-if="filteredCakes.length > 0"
-            >
-                <GalleryCakeCard
-                    v-for="cake in filteredCakes"
-                    :key="cake.id"
-                    :cake="cake"
-                    class="stagger-item"
-                />
-            </TransitionGroup>
-
-            <!-- Empty State -->
-            <div
-                v-else
-                class="flex flex-col items-center justify-center text-center py-20 px-4 bg-white/40 rounded-[24px] border border-outline-variant/30"
-            >
-                <div class="bg-surface-container rounded-full p-6 mb-6">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ac2471" stroke-width="1.5">
-                        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm1-13h-2v6h2zm0 8h-2v2h2z"/>
-                    </svg>
-                </div>
-                <h3 class="font-display text-xl font-bold text-on-surface mb-2">Kue Tidak Ditemukan</h3>
-                <p class="text-on-surface-variant font-body max-w-[448px] text-sm leading-relaxed mb-6">
-                    Tidak ada koleksi kue yang sesuai dengan filter kategori atau rentang harga yang dipilih. Cobalah untuk mereset filter atau menyesuaikan rentang pencarian Anda.
-                </p>
-                <button
-                    @click="resetFilters"
-                    class="gradient-button text-on-primary rounded-full px-6 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300 hover:scale-105"
-                >
-                    Lihat Semua Koleksi
-                </button>
-            </div>
-        </main>
     </MainLayout>
 </template>
 
 <style scoped>
-/* Dual Slider thumb overlays styling */
-.dual-slider input[type='range'] {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.dual-slider input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 2.5px solid #ac2471;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    pointer-events: auto;
-    transition: transform 0.1s ease;
-}
-
-.dual-slider input[type='range']::-webkit-slider-thumb:hover {
-    transform: scale(1.15);
-}
-
-.dual-slider input[type='range']::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 2.5px solid #ac2471;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    pointer-events: auto;
-    transition: transform 0.1s ease;
-}
-
-.dual-slider input[type='range']::-moz-range-thumb:hover {
-    transform: scale(1.15);
-}
-
 /* Staggered load animation */
-.stagger-grid-enter-active {
-    transition: all 0.5s ease;
+.stagger-grid-move,
+.stagger-grid-enter-active,
+.stagger-grid-leave-active {
+    transition: all 0.4s ease;
 }
 
-.stagger-grid-enter-from {
+.stagger-grid-enter-from,
+.stagger-grid-leave-to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
+}
+
+.stagger-grid-leave-active {
+    position: absolute;
+    /* optional: width could be set via js if needed, but absolute hides it from grid flow so items can slide */
 }
 
 .stagger-item {
