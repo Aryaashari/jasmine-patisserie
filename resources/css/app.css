@@ -1,0 +1,171 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* ──────────────────── Custom Theme Tokens ──────────────────── */
+@theme inline {
+    /* Fonts */
+    --font-display: 'Epilogue', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* Colors — Surface */
+    --color-surface: #fff8f7;
+    --color-surface-dim: #e3d7d7;
+    --color-surface-bright: #fff8f7;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #fdf1f0;
+    --color-surface-container: #f7ebeb;
+    --color-surface-container-high: #f1e6e5;
+    --color-surface-container-highest: #ebe0df;
+    --color-surface-variant: #ebe0df;
+
+    /* Colors — On Surface */
+    --color-on-surface: #201a1a;
+    --color-on-surface-variant: #4d4635;
+
+    /* Colors — Inverse */
+    --color-inverse-surface: #352f2f;
+    --color-inverse-on-surface: #faeeee;
+
+    /* Colors — Outline */
+    --color-outline: #7f7663;
+    --color-outline-variant: #d0c5af;
+
+    /* Colors — Primary (Gold) */
+    --color-primary: #735c00;
+    --color-on-primary: #ffffff;
+    --color-primary-container: #d4af37;
+    --color-on-primary-container: #554300;
+    --color-inverse-primary: #e9c349;
+
+    /* Colors — Secondary (Pink/Magenta) */
+    --color-secondary: #ac2471;
+    --color-on-secondary: #ffffff;
+    --color-secondary-container: #fd68b3;
+    --color-on-secondary-container: #6c0042;
+
+    /* Colors — Tertiary (Warm Neutral) */
+    --color-tertiary: #70585b;
+    --color-on-tertiary: #ffffff;
+    --color-tertiary-container: #c9acaf;
+    --color-on-tertiary-container: #554042;
+
+    /* Colors — Error */
+    --color-error: #ba1a1a;
+    --color-on-error: #ffffff;
+    --color-error-container: #ffdad6;
+    --color-on-error-container: #93000a;
+
+    /* Colors — Fixed */
+    --color-primary-fixed: #ffe088;
+    --color-primary-fixed-dim: #e9c349;
+    --color-secondary-fixed: #ffd8e6;
+    --color-secondary-fixed-dim: #ffb0d0;
+    --color-tertiary-fixed: #fbdbde;
+    --color-tertiary-fixed-dim: #debfc2;
+
+    /* Colors — Background */
+    --color-background: #fff8f7;
+    --color-on-background: #201a1a;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 12px;
+    --spacing-base: 8px;
+    --spacing-md: 24px;
+    --spacing-lg: 48px;
+    --spacing-xl: 80px;
+    --spacing-gutter: 24px;
+}
+
+/* ──────────────────── Global Styles ──────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--font-body);
+}
+
+/* ──────────────────── Utility Classes ──────────────────── */
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.glass-dark {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Signature Gradient */
+.gradient-primary {
+    background: linear-gradient(135deg, #ac2471 0%, #8b008b 100%);
+}
+
+.gradient-hero {
+    background: linear-gradient(135deg, #e91e8c 0%, #8b008b 40%, #ffb6c1 100%);
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #ac2471 0%, #8b008b 100%);
+}
+
+/* Shadows */
+.shadow-glow {
+    box-shadow: 0 0 30px rgba(139, 0, 139, 0.08);
+}
+
+.shadow-glow-gold {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.12);
+}
+
+.shadow-card {
+    box-shadow: 0 4px 24px rgba(139, 0, 139, 0.06);
+}
+
+.shadow-elevated {
+    box-shadow: 0 8px 40px rgba(139, 0, 139, 0.1);
+}
+
+/* Gold accent */
+.border-gold {
+    border-color: #d4af37;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+.bg-gold {
+    background-color: #d4af37;
+}
+
+/* Label styling */
+.label-uppercase {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Scrollbar styling */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
