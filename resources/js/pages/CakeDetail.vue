@@ -116,7 +116,7 @@ const whatsappLink = computed(() => {
                             </div>
 
                             <!-- Long Description -->
-                            <p class="text-on-surface-variant font-body text-base leading-relaxed mt-6">
+                            <p class="text-on-surface-variant font-body text-base leading-relaxed mt-6 whitespace-pre-wrap">
                                 {{ cake.longDescription }}
                             </p>
 

@@ -48,7 +48,7 @@ Route::get('/gallery/{slug}', function ($slug) {
         'priceFormatted' => 'Rp ' . number_format($cake->price, 0, ',', '.'),
         'category' => $cake->category ? $cake->category->name : 'Uncategorized',
         'image' => $cake->image ? asset('storage/' . $cake->image) : 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1089&auto=format&fit=crop',
-        'longDescription' => $cake->description ?: 'Kue lezat dan spesial persembahan Jasmine Patisserie. Dibuat dengan bahan premium dan penuh cinta.',
+        'longDescription' => $cake->description,
         'servings' => 'Sesuai pesanan',
     ];
 
