@@ -17,6 +17,7 @@ class CakesTable
                 \Filament\Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 \Filament\Tables\Columns\TextColumn::make('category.name')->searchable()->sortable(),
                 \Filament\Tables\Columns\TextColumn::make('price')->money('IDR')->sortable(),
+                \Filament\Tables\Columns\IconColumn::make('is_signature')->boolean(),
                 \Filament\Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 \Filament\Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])

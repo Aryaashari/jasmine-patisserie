@@ -5,44 +5,33 @@ import SectionHeading from './SectionHeading.vue';
 
 const scrollContainer = ref<HTMLElement | null>(null);
 
-const signatureCakes = [
-    {
-        image: '/images/cake-raspberry-gold.png',
-        name: 'Raspberry Gold Velvet',
-        price: 'Rp 850.000',
-        tags: ['Terlaris', 'Klasik'],
-    },
-    {
-        image: '/images/cake-floral-whisper.png',
-        name: 'Floral Whisper',
-        price: 'Rp 1.400.000',
-        tags: ['Edisi Terbatas', 'Floral'],
-    },
-    {
-        image: '/images/cake-love-sampler.png',
-        name: 'The Luxe Sampler',
-        price: 'Rp 550.000',
-        tags: ['Hadiah Sempurna', 'Campuran'],
-    },
-];
+const props = defineProps<{
+    cakes: {
+        name: string;
+        image: string;
+        price: string;
+        tags: string[];
+        slug?: string;
+    }[]
+}>();
 
 function scrollLeft() {
-    scrollContainer.value?.scrollBy({ left: -320, behavior: 'smooth' });
+    scrollContainer.value?.scrollBy({ left: -260, behavior: 'smooth' });
 }
 
 function scrollRight() {
-    scrollContainer.value?.scrollBy({ left: 320, behavior: 'smooth' });
+    scrollContainer.value?.scrollBy({ left: 260, behavior: 'smooth' });
 }
 </script>
 
 <template>
-    <section id="gallery" class="bg-[#fcf7f6] py-16 md:py-24">
+    <section id="gallery" class="bg-[#fcf7f6] py-16 md:py-20">
         <div class="mx-auto max-w-7xl px-4 md:px-16">
             <!-- Header with Arrows -->
             <div class="flex items-start justify-between">
                 <SectionHeading
-                    title="Pilihan Signature Chef"
-                    subtitle="Spesial mingguan yang dibuat tangan oleh pastry chef ahli kami."
+                    title="Pilihan Signature"
+                    subtitle="Spesial mingguan yang dibuat tangan oleh ahli pastry kami."
                     align="left"
                     titleClass="text-[#785109]"
                 />
@@ -72,10 +61,10 @@ function scrollRight() {
             <!-- Cards -->
             <div
                 ref="scrollContainer"
-                class="hide-scrollbar -mx-4 flex gap-6 overflow-x-auto snap-x snap-mandatory px-4 pb-4 md:mx-0 md:px-0"
+                class="hide-scrollbar -mx-4 flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 md:mx-0 md:px-0"
             >
                 <CakeCard
-                    v-for="cake in signatureCakes"
+                    v-for="cake in cakes"
                     :key="cake.name"
                     :image="cake.image"
                     :name="cake.name"

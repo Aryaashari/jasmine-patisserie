@@ -31,6 +31,9 @@ class CakeForm
                 \Filament\Forms\Components\FileUpload::make('image')
                     ->image()
                     ->directory('cakes'),
+                \Filament\Forms\Components\Toggle::make('is_signature')
+                    ->label('Signature Cake')
+                    ->default(false),
                 \Filament\Forms\Components\DateTimePicker::make('created_at')
                     ->label('Waktu Tambah')
                     ->native(false),

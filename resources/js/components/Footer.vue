@@ -62,7 +62,14 @@ const socialLinks = [
                 <div>
                     <h4 class="label-uppercase text-primary-container mb-4">Kunjungi Kami</h4>
                     <div class="text-inverse-on-surface/70 font-body space-y-2.5 text-sm">
-                        <p>Jl. Boulevard Raya, Cibeber,<br>Kec. Cibeber, Kota Cilegon, Banten 42426</p>
+                        <a 
+                            href="https://www.google.com/maps/place/Jasmine+Patisserie/@-6.031659,106.0665247,17z/data=!4m6!3m5!1s0x2e418d552b1b5f5f:0x144825023187868!8m2!3d-6.0316239!4d106.0664852!16s%2Fg%2F11s2_zzpcr?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block transition-colors duration-200 hover:text-[#d4af37]"
+                        >
+                            Jl. Boulevard Raya, Cibeber,<br>Kec. Cibeber, Kota Cilegon, Banten 42426
+                        </a>
                         <p>jasminepatisserie15@gmail.com</p>
                         <p>+62 815-1119-6225</p>
                     </div>

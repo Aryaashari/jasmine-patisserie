@@ -2,7 +2,47 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', 'Welcome')->name('home');
+Route::get('/', function () {
+    $cakes = \App\Models\Cake::with('category')->where('is_signature', true)->latest()->take(6)->get()->map(function ($cake) {
+        return [
+            'id' => $cake->id,
+            'name' => $cake->name,
+            'slug' => $cake->slug,
+            'price' => 'Rp ' . number_format($cake->price, 0, ',', '.'),
+            'tags' => $cake->category ? [$cake->category->name] : [],
+            'image' => $cake->image ? asset('storage/' . $cake->image) : 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1089&auto=format&fit=crop',
+        ];
+    });
+
+    $categories = \App\Models\Category::with(['cakes' => function($query) {
+        $query->latest()->limit(1);
+    }])->get()->map(function ($cat) {
+        $cake = $cat->cakes->first();
+        return [
+            'id' => $cat->id,
+            'name' => $cat->name,
+            'slug' => $cat->slug,
+            'description' => 'Jelajahi koleksi ' . $cat->name . ' kami',
+            'image' => $cake && $cake->image ? asset('storage/' . $cake->image) : 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1089&auto=format&fit=crop',
+        ];
+    });
+
+    $testimonials = \App\Models\Testimonial::latest()->take(10)->get()->map(function ($testimonial) {
+        return [
+            'id' => $testimonial->id,
+            'name' => $testimonial->name,
+            'message' => $testimonial->message,
+            'rating' => $testimonial->rating,
+            'image' => $testimonial->image ? asset('storage/' . $testimonial->image) : 'https://ui-avatars.com/api/?name=' . urlencode($testimonial->name) . '&background=random',
+        ];
+    });
+
+    return inertia('Welcome', [
+        'featuredCakes' => $cakes,
+        'categories' => $categories,
+        'testimonials' => $testimonials
+    ]);
+})->name('home');
 Route::get('/gallery', function () {
     $dbCakes = \App\Models\Cake::with('category')->get()->map(function ($cake) {
         return [
