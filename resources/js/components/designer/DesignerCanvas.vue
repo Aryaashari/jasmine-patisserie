@@ -19,14 +19,14 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="relative h-full w-full bg-[#f5eae8] overflow-hidden">
+    <div class="relative h-full w-full bg-[#fcf2f0] overflow-hidden">
         <!-- Canvas Container -->
         <div ref="canvasContainer" class="h-full w-full outline-none" tabindex="0"></div>
         
         <!-- Loading Overlay -->
         <div 
             v-if="!isReady" 
-            class="absolute inset-0 flex items-center justify-center bg-[#f5eae8]/80 backdrop-blur-sm z-10 transition-opacity duration-300"
+            class="absolute inset-0 flex items-center justify-center bg-[#fcf2f0]/80 backdrop-blur-sm z-10 transition-opacity duration-300"
         >
             <div class="flex flex-col items-center gap-4">
                 <div class="h-10 w-10 animate-spin rounded-full border-4 border-outline-variant/30 border-t-[#ac2471]"></div>

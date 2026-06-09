@@ -1,13 +1,13 @@
 {
-  "_GalleryCakeCard-BdBKdX1b.js": {
-    "file": "assets/GalleryCakeCard-BdBKdX1b.js",
+  "_GalleryCakeCard-BT7bi-Wa.js": {
+    "file": "assets/GalleryCakeCard-BT7bi-Wa.js",
     "name": "GalleryCakeCard",
     "imports": [
       "resources/js/app.ts"
     ]
   },
-  "_MainLayout-zJSLg1is.js": {
-    "file": "assets/MainLayout-zJSLg1is.js",
+  "_MainLayout-DBUhbgVJ.js": {
+    "file": "assets/MainLayout-DBUhbgVJ.js",
     "name": "MainLayout",
     "imports": [
       "resources/js/app.ts"
@@ -18,7 +18,7 @@
     "name": "_plugin-vue_export-helper"
   },
   "resources/css/app.css": {
-    "file": "assets/app-D2YOMtn8.css",
+    "file": "assets/app-CA65qTzk.css",
     "name": "app",
     "names": [
       "app.css"
@@ -27,7 +27,7 @@
     "isEntry": true
   },
   "resources/js/app.ts": {
-    "file": "assets/app-CWTi9b-r.js",
+    "file": "assets/app-C8B5T68Z.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
@@ -39,54 +39,54 @@
     ]
   },
   "resources/js/pages/CakeDetail.vue": {
-    "file": "assets/CakeDetail-BgXtvrMc.js",
+    "file": "assets/CakeDetail-CCXcFiv_.js",
     "name": "CakeDetail",
     "src": "resources/js/pages/CakeDetail.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.ts",
-      "_MainLayout-zJSLg1is.js",
-      "_GalleryCakeCard-BdBKdX1b.js"
+      "_MainLayout-DBUhbgVJ.js",
+      "_GalleryCakeCard-BT7bi-Wa.js"
     ]
   },
   "resources/js/pages/CustomDesigner.vue": {
-    "file": "assets/CustomDesigner-C0iXGagz.js",
+    "file": "assets/CustomDesigner-Dnz0okNF.js",
     "name": "CustomDesigner",
     "src": "resources/js/pages/CustomDesigner.vue",
     "isDynamicEntry": true,
     "imports": [
       "__plugin-vue_export-helper-BDNMzG2s.js",
       "resources/js/app.ts",
-      "_MainLayout-zJSLg1is.js"
+      "_MainLayout-DBUhbgVJ.js"
     ],
     "css": [
       "assets/CustomDesigner-uA583Ove.css"
     ]
   },
   "resources/js/pages/Gallery.vue": {
-    "file": "assets/Gallery-CUQV3ccp.js",
+    "file": "assets/Gallery-JqGGozdf.js",
     "name": "Gallery",
     "src": "resources/js/pages/Gallery.vue",
     "isDynamicEntry": true,
     "imports": [
       "__plugin-vue_export-helper-BDNMzG2s.js",
       "resources/js/app.ts",
-      "_MainLayout-zJSLg1is.js",
-      "_GalleryCakeCard-BdBKdX1b.js"
+      "_MainLayout-DBUhbgVJ.js",
+      "_GalleryCakeCard-BT7bi-Wa.js"
     ],
     "css": [
       "assets/Gallery-BqqCDgqG.css"
     ]
   },
   "resources/js/pages/Welcome.vue": {
-    "file": "assets/Welcome-BlVS1v7f.js",
+    "file": "assets/Welcome-CYAUmbFS.js",
     "name": "Welcome",
     "src": "resources/js/pages/Welcome.vue",
     "isDynamicEntry": true,
     "imports": [
       "__plugin-vue_export-helper-BDNMzG2s.js",
       "resources/js/app.ts",
-      "_MainLayout-zJSLg1is.js"
+      "_MainLayout-DBUhbgVJ.js"
     ],
     "css": [
       "assets/Welcome-C_J150xe.css"

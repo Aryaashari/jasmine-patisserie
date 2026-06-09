@@ -78,8 +78,8 @@ return;
         const height = canvasContainerRef.value.clientHeight;
 
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x1a1a2e);
-        scene.fog = new THREE.Fog(0x1a1a2e, 12, 60);
+        scene.background = new THREE.Color(0x2a2a40);
+        scene.fog = new THREE.Fog(0x2a2a40, 12, 60);
 
         camera = new THREE.PerspectiveCamera(32, width / height, 0.1, 100);
         camera.position.set(3, 4.5, 7);
@@ -144,7 +144,7 @@ return;
         const pmremGenerator = new THREE.PMREMGenerator(renderer);
         pmremGenerator.compileCubemapShader();
         const envScene = new THREE.Scene();
-        envScene.background = new THREE.Color(0x1a1a2e);
+        envScene.background = new THREE.Color(0x2a2a40);
         // Add gradient to environment for soft reflections
         const envTop = new THREE.Mesh(
             new THREE.PlaneGeometry(20, 20),
@@ -160,7 +160,7 @@ return;
         // Floor
         const floor = new THREE.Mesh(
             new THREE.PlaneGeometry(100, 100),
-            new THREE.MeshStandardMaterial({ color: 0x1a1a2e, roughness: 0.95, metalness: 0.0 })
+            new THREE.MeshStandardMaterial({ color: 0x2a2a40, roughness: 0.95, metalness: 0.0 })
         );
         floor.rotation.x = -Math.PI / 2;
         floor.position.y = -0.2;
